@@ -3,10 +3,11 @@ import csv
 
 # Declaration of functions
 def logistic(x):
-    return .5 * (1 + np.tanh(.5 * x))
+    return 0.5*(1 + np.tanh(0.5*x))
 
 def logistic_derivative(x):
-    return logistic(x)*(1 - logistic(x))
+	l = logistic(x)
+	return l*(1 - l)
 
 #Pre-Processing
 wines = []
@@ -34,7 +35,7 @@ for label in aux:
 qualities = np.array(qualities)
 
 #Auxiliar Variables
-ratiosRange = [3, 4, 5, 6]
+ratiosRange = [3, 4, 5]
 epochsRange = [5000, 7500, 10000]
 learningRateRange = [0.05, 0.075, 0.1]
 momentumRange = [0., 0.25, 0.5]
@@ -90,7 +91,6 @@ for ratio in ratiosRange:
 					prevDeltaOut = deltaOutputLayer
 					prevDeltaHidden2 = deltaHiddenLayer2
 					prevDeltaHidden1 = deltaHiddenLayer1
-
 				#Test
 				layerHidden1Init = np.dot(matrixTest,weightsHidden1)
 				layerHidden1Output = logistic(layerHidden1Init)
@@ -104,6 +104,5 @@ for ratio in ratiosRange:
 					#print(str(predictOutput[i]) + " " + str(matrixTestT[i]))
 					if np.array_equal(predictOutput[i], matrixTestT[i]):
 						accuracy += 1
-
 				accuracy = (accuracy/testLen)*100
 				print("Ratio: "+str(ratio-1)+":1 Learning Rate: "+str(learningRate)+" Momentum: "+str(momentum)+" Cycles: "+str(epochs)+" Accuracy: "+str(np.around(accuracy, 3))+"%")

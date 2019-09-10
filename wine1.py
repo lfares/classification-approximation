@@ -1,13 +1,13 @@
 import numpy as np
-import scipy as sp
 import csv
 
 # Declaration of functions
 def logistic(x):
-    return .5 * (1 + np.tanh(.5 * x))
+    return 0.5*(1 + np.tanh(0.5*x))
 
 def logistic_derivative(x):
-    return logistic(x)*(1 - logistic(x))
+	l = logistic(x)
+	return l*(1 - l)
 
 #Pre-Processing
 wines = []
@@ -35,7 +35,7 @@ for label in aux:
 qualities = np.array(qualities)
 
 #Auxiliar Variables
-ratiosRange = [3, 4, 5, 6]
+ratiosRange = [3, 4, 5]
 epochsRange = [5000, 7500, 10000]
 learningRateRange = [0.05, 0.075, 0.1]
 momentumRange = [0., 0.25, 0.5]
